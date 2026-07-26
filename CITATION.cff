@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If Prooflint supports your work, please cite this software."
+title: "Prooflint"
+type: software
+authors:
+  - family-names: "Deniz"
+    given-names: "Enes"
+version: 0.1.0
+date-released: 2026-07-26
+url: "https://github.com/3nesdeniz/prooflint"
+repository-code: "https://github.com/3nesdeniz/prooflint"
+license: Apache-2.0
+keywords:
+  - AI security
+  - evidence hygiene
+  - vulnerability reporting
+  - SARIF

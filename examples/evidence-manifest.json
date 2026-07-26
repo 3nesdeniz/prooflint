@@ -1,0 +1,18 @@
+{
+  "files": [
+    {
+      "kind": "redacted_trace",
+      "path": "evidence/verified/synthetic-trace.txt",
+      "redacted": true,
+      "sensitive": false,
+      "sha256": "402b9c878d2862b14210f0adb9d83b0ac72c91e803f350549377bf07bbf924bc",
+      "size": 185,
+      "state": "verified"
+    }
+  ],
+  "finding": {
+    "id": "SYNTH-001",
+    "schema_version": "0.1"
+  },
+  "manifest_version": "0.1"
+}

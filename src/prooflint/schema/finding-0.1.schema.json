@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/3nesdeniz/prooflint/schema/finding-0.1.schema.json",
+  "title": "Prooflint finding 0.1",
+  "type": "object",
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "profile": {"type": "string"},
+    "status": {
+      "enum": ["verified", "supported_inference", "unverified", "not_tested"]
+    },
+    "target": {"type": "object"},
+    "scope": {
+      "type": "object",
+      "properties": {
+        "authorized": {"type": "boolean"},
+        "description": {"type": "string"},
+        "boundaries": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "preconditions": {"type": "array", "items": {"type": "string"}},
+    "affected_boundary": {"type": "string"},
+    "expected": {"type": "string"},
+    "observed": {"type": "string"},
+    "impact": {"type": "string"},
+    "confidence": {"type": "string"},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {"type": "string"},
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "state": {
+            "enum": ["verified", "supported_inference", "unverified", "not_tested"]
+          },
+          "redacted": {"type": "boolean"},
+          "sensitive": {"type": "boolean"},
+          "description": {"type": "string"},
+          "observed_at": {"type": "string"}
+        }
+      }
+    },
+    "reproduction": {
+      "type": "object",
+      "properties": {
+        "attempts": {"type": "integer"},
+        "successes": {"type": "integer"},
+        "environment": {"type": "string"},
+        "steps": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "remediation": {"type": "string"},
+    "retest": {"type": "array", "items": {"type": "string"}},
+    "severity": {"type": "string"},
+    "metadata": {"type": "object"},
+    "body": {"type": "string"}
+  }
+}

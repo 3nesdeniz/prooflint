@@ -1,0 +1,13 @@
+.coverage
+.DS_Store
+.hypothesis/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+build/
+dist/
+*.egg-info/
+prooflint.json
+prooflint.sarif

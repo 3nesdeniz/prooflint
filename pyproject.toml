@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "prooflint"
+version = "0.1.0"
+description = "A local-first evidence gate for AI-security findings"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Enes Deniz" }]
+keywords = ["ai-security", "evidence", "lint", "sarif", "vulnerability-research"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Security",
+]
+dependencies = ["PyYAML>=6.0.2,<7"]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2.2,<2",
+  "check-wheel-contents>=0.6,<1",
+  "detect-secrets>=1.5,<2",
+  "hatchling==1.27.0",
+  "hypothesis>=6.125,<7",
+  "jsonschema>=4.23,<5",
+  "mypy>=1.15,<2",
+  "pip-audit>=2.9,<3",
+  "pytest>=9.0.3,<10",
+  "pytest-cov>=6,<7",
+  "ruff>=0.9,<1",
+  "twine>=6,<7",
+  "types-PyYAML>=6.0.12,<7",
+]
+
+[project.scripts]
+prooflint = "prooflint.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/3nesdeniz/prooflint"
+Issues = "https://github.com/3nesdeniz/prooflint/issues"
+Source = "https://github.com/3nesdeniz/prooflint"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prooflint"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["B", "E4", "E7", "E9", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/prooflint"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["prooflint"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_also = ["if TYPE_CHECKING:", "if __name__ == .__main__.:"]

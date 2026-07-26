@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/3nesdeniz/prooflint/schema/evidence-manifest-0.1.schema.json",
+  "title": "Prooflint evidence manifest 0.1",
+  "type": "object",
+  "required": ["manifest_version", "finding", "files"],
+  "properties": {
+    "manifest_version": {"const": "0.1"},
+    "finding": {
+      "type": "object",
+      "required": ["id", "schema_version"],
+      "properties": {
+        "id": {"type": "string"},
+        "schema_version": {"const": "0.1"}
+      },
+      "additionalProperties": false
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "size", "kind", "state", "redacted", "sensitive"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "size": {"type": "integer", "minimum": 0},
+          "kind": {"type": "string"},
+          "state": {
+            "enum": ["verified", "supported_inference", "unverified", "not_tested"]
+          },
+          "redacted": {"type": "boolean"},
+          "sensitive": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Install Python
+        run: uv python install ${{ matrix.python-version }}
+      - name: Install locked dependencies
+        run: uv sync --extra dev --locked --python ${{ matrix.python-version }}
+      - name: Format
+        run: uv run ruff format --check .
+      - name: Lint
+        run: uv run ruff check .
+      - name: Type check
+        run: uv run mypy src
+      - name: Test
+        run: uv run pytest --cov=prooflint --cov-report=term-missing --cov-fail-under=95
+      - name: Build distributions
+        run: uv build --no-build-isolation --clear
+      - name: Validate distributions
+        run: |
+          uv run twine check dist/*
+          uv run check-wheel-contents dist/*.whl
+      - name: Smoke-test wheel
+        run: |
+          uv run --isolated --no-project \
+            --with ./dist/prooflint-0.1.0-py3-none-any.whl \
+            prooflint --version

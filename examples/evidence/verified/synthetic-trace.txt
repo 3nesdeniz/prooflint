@@ -1,0 +1,6 @@
+Synthetic offline trace; no external system or personal data.
+fixture=authorization-boundary-v1
+expected_decision=deny
+observed_decision=accept
+policy_label_present=false
+redacted=true

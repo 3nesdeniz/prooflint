@@ -1,0 +1,2 @@
+finding.md:7: error PL001 record both a target identifier and immutable fingerprint [target]
+Prooflint: 1 finding(s), 1 violation(s), 0 passed

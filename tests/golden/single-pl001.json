@@ -1,0 +1,19 @@
+{
+  "diagnostics": [
+    {
+      "code": "PL001",
+      "field": "target",
+      "level": "error",
+      "line": 7,
+      "message": "record both a target identifier and immutable fingerprint",
+      "path": "finding.md"
+    }
+  ],
+  "passed": false,
+  "schema_version": "0.1",
+  "summary": {
+    "findings": 1,
+    "passed": 0,
+    "violations": 1
+  }
+}

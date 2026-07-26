@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "id": "HYPOTHESIS-001",
+  "title": "Intentionally incomplete theoretical hypothesis",
+  "profile": "ai-system",
+  "status": "not_tested",
+  "target": {
+    "system": "fictional-system"
+  },
+  "scope": {
+    "authorized": false,
+    "description": "No testing was performed"
+  },
+  "preconditions": [],
+  "expected": "A fictional policy would deny the request.",
+  "observed": "A fictional policy would deny the request.",
+  "impact": "Unknown; this is a hypothesis only.",
+  "evidence": [],
+  "reproduction": {
+    "attempts": 0,
+    "successes": 0,
+    "environment": "",
+    "steps": []
+  },
+  "remediation": "",
+  "retest": [],
+  "body": "This file intentionally fails several rules and is safe for reporter demos."
+}
